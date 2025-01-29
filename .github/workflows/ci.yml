@@ -1,0 +1,32 @@
+name: Command-Line Tests
+
+on: [push, pull_request]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]  
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install .  # Install project dependencies from pyproject.toml
+
+      - name: Run Test Script
+        run: |
+          source venv/bin/activate
+          chmod +x tests/test_clis.sh
+          ./tests/test_clis.sh
