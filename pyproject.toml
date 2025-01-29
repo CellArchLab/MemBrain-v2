@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 
 # https://peps.python.org/pep-0621/
 [project]
-name = "membrain_v2"
+name = "membrain"
 description = "membrane protein localization for cryo-ET"
 readme = "README.md"
 requires-python = ">=3.8"
