@@ -27,5 +27,6 @@ jobs:
 
       - name: Run Test Script
         run: |
+          source venv/bin/activate
           chmod +x tests/test_clis.sh
           ./tests/test_clis.sh
